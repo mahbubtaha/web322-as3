@@ -1,0 +1,284 @@
+/*------------------------------------------ FONTS ------------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,500;0,700;1,300;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,16..28,100..800;1,16..28,100..800&display=swap");
+
+// font-family: 'Poppins', sans-serif; // Uncomment if needed
+// font-family: "Inter", sans-serif; // Uncomment if needed
+
+/*------------------------------------------ VARIABLES ------------------------------------------*/
+$nav-bg-color: hsl(220, 50%, 10%);
+$nav-bg-hover-color: hsl(220, 30%, 30%);
+$nav-height: 70px;
+$nav-mobile-height: 80px;
+$mobile-main-padding-x: 8%;
+$mobile-main-padding-y: 4vh;
+$nav-text-color: hsl(0, 0%, 90%);
+$border-dashed: 1px dashed hsla(0, 0%, 100%, 0.7);
+$text-logo-size: 1.4rem; // Updated to match CSS
+$text-heading-size: 2.8rem; // Updated to match CSS
+$text-body-size: 1rem; // Remains same
+$link-transition: 0.2s ease;
+$link-transition2: 0.4s ease-in-out;
+$link-pulse: pulse-text-glow 1s infinite alternate, pulse-nav-bg 1s infinite alternate;
+
+/*------------------------------------------ ANIMATIONS ------------------------------------------*/
+@keyframes pulse-logo-glow {
+  0% {
+    color: $nav-text-color;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0);
+  }
+  50% {
+    color: hsl(210, 100%, 95%);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    color: hsl(0, 0%, 100%);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes pulse-text-glow {
+  0% {
+    color: $nav-text-color;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0);
+  }
+  50% {
+    color: hsl(210, 100%, 90%);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    color: hsl(0, 0%, 100%);
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
+  }
+}
+
+@keyframes pulse-nav-bg {
+  0% {
+    background: $nav-bg-color;
+  }
+  50% {
+    background: hsl(220, 45%, 25%);
+  }
+  100% {
+    background: $nav-bg-hover-color;
+  }
+}
+
+/*------------------------------------------ MIXINS ------------------------------------------*/
+@mixin flex($justify: flex-start, $align: flex-start, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin text-logo() {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem; // Updated to match CSS
+  font-weight: 800; // Updated to match CSS
+}
+
+@mixin text-nav-link($size: 1rem) {
+  font-family: "Poppins", sans-serif;
+  font-size: $size;
+  font-weight: 300;
+}
+
+@mixin text-heading($size: 2.8rem, $weight: 900) { // Updated font size
+  font-family: "Poppins", sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  text-transform: uppercase;
+}
+
+@mixin text-body($size: 1rem) {
+  font-family: "Inter", sans-serif;
+  font-size: $size;
+  font-weight: 400;
+}
+
+/*------------------------------------------ STYLES ------------------------------------------*/
+/**************Reset**************/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  font-size: 100%; /* Changed from 15px to scale better */
+  scroll-behavior: smooth;
+}
+
+/**************Custom**************/
+body {
+  @include flex(flex-start, flex-start, column);
+  @include text-body();
+  width: 100%;
+  min-width: 260px;
+  min-height: 100vh;
+  background: white;
+}
+
+.nav-container {
+  @include flex(space-between, center, row);
+  width: 100%;
+  height: $nav-height;
+  padding: 0 5%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: $nav-text-color;
+  background: $nav-bg-color;
+  transition: 0.3s ease;
+  z-index: 9;
+
+  .nav-logo {
+    @include flex(center, center, column);
+    @include text-logo();
+    padding: 0 2.5em;
+    height: 100%;
+    line-height: 1.2;
+    transition: 0.2s ease;
+    span {
+      font-weight: 300;
+      font-size: 0.8rem; // Adjusted to match CSS
+    }
+  }
+
+  .nav-logo:hover {
+    animation: pulse-logo-glow 1s infinite alternate;
+    transform: scale(1.05);
+  }
+
+  .nav-menu-wrapper {
+    @include flex(space-between, center, row);
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    list-style: none;
+
+    .nav-menu-item {
+      @include flex(center, center, row);
+      cursor: pointer;
+      transition: 0.2s ease, transform 0.3s ease;
+
+      &:hover {
+        animation: pulse-text-glow 1s infinite alternate, pulse-nav-bg 1s infinite alternate;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.main-container {
+  @include flex(flex-start, flex-start, row);
+  width: 100%;
+  padding: 4vh 0;
+
+  p {
+    @include text-body();
+    margin-bottom: 3vh;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .main-aside {
+    @include flex(flex-start, center, column);
+    width: 20%;
+    min-width: 250px;
+    min-height: calc(100vh - 60px);
+    padding: 4vh 3%;
+    text-align: center;
+    background: linear-gradient(to bottom right, hsl(200, 15%, 85%), hsl(210, 20%, 75%));
+
+    h2 {
+      @include text-heading(2.3rem);
+      margin-bottom: 2vh;
+      color: black;
+    }
+  }
+
+  .main-section {
+    @include flex(flex-start, flex-start, column);
+    width: 75%;
+    padding: 4vh 5%;
+    text-align: justify;
+
+    h2 {
+      @include text-heading();
+      margin-bottom: 3vh;
+      color: black;
+    }
+  }
+
+  .main-section-error {
+    @include flex(center, center, column);
+    width: 80%;
+    padding: 4vh 4%;
+    text-align: center;
+
+    h2 {
+      @include text-heading(4.5rem);
+      margin-bottom: 3vh;
+      color: black;
+    }
+
+    p {
+      @include text-body(1.7rem);
+      color: black;
+      margin-top: 2vh;
+    }
+  }
+}
+
+/*------------------------------------------ RESPONSIVE ------------------------------------------*/
+@media screen and (max-width: 700px) {
+  .nav-container {
+    height: $nav-mobile-height;
+    padding: 0 $mobile-main-padding-x;
+
+    .nav-menu-wrapper {
+      display: none;
+    }
+
+    .nav-menu-toggle {
+      display: block;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+  }
+
+  .main-container {
+    @include flex(flex-start, center, column-reverse);
+    text-align: center;
+    padding: $mobile-main-padding-y 0;
+
+    h2 {
+      @include text-heading();
+    }
+
+    .main-aside {
+      width: 100%;
+      padding: $mobile-main-padding-y $mobile-main-padding-x;
+      min-width: initial;
+      min-height: initial;
+      border: none;
+    }
+
+    .main-section {
+      @include flex(flex-start, center, column);
+      width: 100%;
+      padding: $mobile-main-padding-y $mobile-main-padding-x;
+      text-align-last: center;
+    }
+  }
+}

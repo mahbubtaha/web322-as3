@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>About</title>
+  </head>
+  <body>
+    <nav class="nav-container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <a class="nav-logo" href="/">
+        <p>WEB322<span>NJJ</span></p>
+        <p><span>Mahbub</span>Taha</p>
+      </a>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav-menu-wrapper">
+        <li class="nav-menu-item">
+          <a class="nav-menu-item-link" href="/shop">Shop</a>
+        </li>
+        <li class="nav-menu-item active">
+          <a class="nav-menu-item-link" href="/">About</a>
+        </li>
+        <li class="nav-menu-item">
+          <a class="nav-menu-item-link" href="/items">Items</a>
+        </li>
+        <li class="nav-menu-item">
+          <a class="nav-menu-item-link" href="/categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="items/add">Add Item</a>
+      </li>
+      </ul>
+      <!-- /.navbar-collapse -->
+    </nav>
+
+    <div class="container" style="align-items: center;">
+      <form method="post" action="/items/add" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Feature Image</legend>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input
+                  class="form-control"
+                  id="featureImage"
+                  name="featureImage"
+                  type="file"
+                />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <fieldset>
+          <legend>Post Content</legend>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="title">Item Name:</label>
+                <input class="form-control" id="title" name="title" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="price">Price:</label>
+                <input class="form-control" id="price" name="price" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="body">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="body"
+                  name="body"
+                  rows="15"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" name="category" id="category">
+                  <option value="1">Home, Garden</option>
+                  <option value="2">Electronics, Computers, Video Games</option>
+                  <option value="3">Clothing</option>
+                  <option value="4">Sports & Outdoors</option>
+                  <option value="5">Pets</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category">Visibility:</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="published" id="published" />
+                    Published
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <hr />
+        <input
+          type="submit"
+          class="btn btn-primary pull-right"
+          value="Add Post"
+        /><br /><br /><br />
+      </form>
+    </div>
+
+    <!-- Latest compiled and minified Bootstrap 5 JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
